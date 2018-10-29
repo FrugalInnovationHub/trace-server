@@ -1,9 +1,8 @@
 # Trace-Server
 MedShare project server
 
-# Project Title
+# MedShare
 
-One Paragraph of project description goes here
 Medshare Project : Build an application that will help MedShare to achieve traceability of donations made by all the donors. The application will collect various information about donation and donation provider provide an API to access that data through flow track system.
 
 ## Getting Started
