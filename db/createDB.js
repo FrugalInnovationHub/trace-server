@@ -14,7 +14,6 @@ connection.connect((error) => {
   }
 });
 
-
 let query = '';
 
 // Create query for creating product_add_table
@@ -25,7 +24,6 @@ connection.query(query, (error, result) => {
     throw error;
   }
 });
-
 
 query = 'CREATE TABLE IF NOT EXISTS manufacturer_table(manufacturer_id VARCHAR(20) NOT NULL PRIMARY KEY, manufacturer_name VARCHAR(30) NOT NULL)';
 

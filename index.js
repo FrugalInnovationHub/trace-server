@@ -7,10 +7,14 @@
 const express = require('express');
 const app = express();
 const url = require('url');
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
 const routeHandler = require('./routeHandler');
 // const { StringDecoder } = require('string_decoder');
 const port = 3000;
+
+// Parse incoming request bodies
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 
 // REST Endpoints

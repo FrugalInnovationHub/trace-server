@@ -4,23 +4,25 @@
 const product = {};
 
 product.get = function(req, res) {
-  console.log('Hello get');
-  res.send('Hello Get');
+  res.type('application/json');
+  res.status(405).send({});
 };
 
 product.post = function(req, res) {
-  console.log('Hello post');
-  res.send('Hello Post');
+  console.log('Request : ', req.body);
+
+  res.type('application/json');
+  res.status(405).send({'Error' : 'Missing required fields'});
 };
 
 product.put = function(req, res) {
-  console.log('Hello put');
-  res.send('Hello Put');
+  res.type('application/json');
+  res.status(405).send({});
 };
 
 product.delete = function(req, res) {
-  console.log('Hello delete');
-  res.send('Hello Delete');
+  res.type('application/json');
+  res.status(405).send({});
 };
 
 // Export the module
