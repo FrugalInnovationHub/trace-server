@@ -21,7 +21,6 @@ app.put('/api/product/', routeHandler.product.put);
 app.delete('/api/product/', routeHandler.product.delete);
 
 
-
 // Start the server, and have it listen on port 3000
 app.listen(port, () => console.log(`App listening on port ${port}!`));
 
