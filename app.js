@@ -5,11 +5,9 @@ const app = express();
 
 app.use(bodyparser.urlencoded({extended: false}))
 
-app.use(express.static(__dirname));
 
 app.get("/", function(req, res) {
 	res.send("Hello from server")
-	console.log(__dirname);
 })
 
 app.post('/add', function(req, res) {
