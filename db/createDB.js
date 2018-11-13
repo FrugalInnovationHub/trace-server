@@ -17,6 +17,9 @@ dbUtils.query(query, [])
   query = 'CREATE TABLE IF NOT EXISTS product_details_table(product_details_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, product_id VARCHAR(20) NOT NULL REFERENCES product_add_table(product_id), manufacturer_id VARCHAR(20) NOT NULL REFERENCES manufacturer_table(manufacturer_id))';
   return dbUtils.query(query, []);
 })
+.then(function(result) {
+  console.log("\x1b[32m",'Success: All table created.',"\x1b[37m");
+})
 .catch(function() {
   console.log('Error Occurs');
 });
