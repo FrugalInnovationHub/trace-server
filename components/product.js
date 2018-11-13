@@ -3,7 +3,6 @@
  */
 
 // Dependencies
-const dbConfig = require('../db/dbConfig');
 const dbUtils = require('../db/dbUtils');
 
 // Container for Product methods
