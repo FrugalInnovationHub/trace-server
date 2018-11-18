@@ -55,7 +55,7 @@ product.post = function(req, res) {
       res.type('application/json').status(500).send({'Error' : 'Internal Server Error'});
     });
   } else {
-    res.type('application/json').status(405).send({'Error' : 'Missing required fields'});
+    res.type('application/json').status(422).send({'Error' : 'Missing required fields'});
   }
 };
 
