@@ -7,19 +7,14 @@ const helper = {};
 helper.productOutputData = function(productTable, manufacturerTable, connectionTable) {
   let formatedData = [];
   productTable.forEach(function(row) {
-
-
     const {product_name, product_id, category} = row;
     let manufacturer_id = '';
     let manufacturer_name = '';
 
     connectionTable.forEach((connection) => {
-
       if(connection.product_id === product_id) {
         manufacturer_id = connection.manufacturer_id;
-
         manufacturerTable.forEach((manufacturer) => {
-
           if(manufacturer.manufacturer_id === manufacturer_id) {
             manufacturer_name = manufacturer.manufacturer_name;
             const data = {
@@ -31,19 +26,12 @@ helper.productOutputData = function(productTable, manufacturerTable, connectionT
             };
             formatedData.push(data);
           }
-
         });
       }
-
-
-
     });
-
-
-
   });
-  console.log(formatedData);
-  return formatedData;
+
+  return formatedData.reverse();
 };
 
 // Export the module
