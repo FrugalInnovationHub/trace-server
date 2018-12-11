@@ -31,7 +31,7 @@ helper.productOutputData = function(productTable, manufacturerTable, connectionT
     });
   });
 
-  return formatedData.reverse();
+  return formatedData;
 };
 
 // Export the module
