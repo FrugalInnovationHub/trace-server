@@ -6,9 +6,11 @@
 // Dependencies
 const express = require('express');
 const app = express();
+// require('./db/createDB.js');
 var cors = require('cors');
 const url = require('url');
 const bodyParser = require('body-parser');
+
 const routeHandler = require('./routeHandler');
 const port = 3001;
 

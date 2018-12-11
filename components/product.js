@@ -4,12 +4,41 @@
 
 // Dependencies
 const dbUtils = require('../db/dbUtils');
+const helper = require('../helpers/helpers');
 
 // Container for Product methods
 const product = {};
 
 product.get = function(req, res) {
-  res.type('application/json').status(405).send({});
+  // Product Add Table
+  let query = "Select * from product_add_table";
+  let productAddTable = [];
+
+  // Manufacturer table
+  let manufacturerTable = [];
+
+  // Common table between product details table
+  let productDetailsTable = [];
+
+  dbUtils.query(query)
+  .then(function(results) {
+    productAddTable = results;
+    query = "Select * from manufacturer_table";
+    return dbUtils.query(query);
+  })
+  .then(function(results) {
+    manufacturerTable = results;
+    query = "Select * from product_details_table";
+    return dbUtils.query(query);
+  })
+  .then(function(productDetailsTable){
+    const data = helper.productOutputData(productAddTable, manufacturerTable, productDetailsTable);
+    res.type('application/json').status(200).send(data);
+  })
+  .catch(function(err) {
+    console.log('Error Occured: ', err);
+    res.type('application/json').status(405).send({});
+  });
 };
 
 // Product POST request
