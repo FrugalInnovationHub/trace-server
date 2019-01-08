@@ -22,6 +22,7 @@ app.use(bodyParser.json());
 
 
 // REST Endpoints
+app.get('/api/login/', routeHandler.login);
 // Product Endpoints
 app.get('/api/product/', routeHandler.product.get);
 app.post('/api/product/', routeHandler.product.post);
