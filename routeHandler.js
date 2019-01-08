@@ -5,6 +5,9 @@ const product = require('./components/product');
 // Container for routeHandler
 const routeHandler = {};
 
+// Container for login submethods
+routeHandler.login = login;
+
 // Container for product submethods
 routeHandler.product = {};
 
