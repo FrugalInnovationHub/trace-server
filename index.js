@@ -24,6 +24,9 @@ app.use(bodyParser.json());
 
 
 // REST Endpoints
+app.get('/api/ping/',function(req,res) {
+  res.type('application/json').status(200).send({Success : 'Your application is working great'});
+});
 
 
 // User Endpoints
