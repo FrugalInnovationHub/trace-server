@@ -4,11 +4,12 @@
 
 // Dependencies
 const dbUtils = require('./dbUtils');
-
- // Create query for creating product_add_table
-let query = 'CREATE TABLE IF NOT EXISTS product_add_table(product_name VARCHAR(100) NOT NULL, product_id VARCHAR(20) NOT NULL PRIMARY KEY, category VARCHAR(30), value VARCHAR(10))';
-
-dbUtils.query(query, [])
+let query = 'USE medshare';
+dbUtils.query(query,[])
+.then(function(result) {
+  query = 'CREATE TABLE IF NOT EXISTS product_add_table(product_name VARCHAR(100) NOT NULL, product_id VARCHAR(20) NOT NULL PRIMARY KEY, category VARCHAR(30), value VARCHAR(10))';
+  return dbUtils.query(query, []);
+})
 .then(function(result) {
   query = 'CREATE TABLE IF NOT EXISTS manufacturer_table(manufacturer_id VARCHAR(20) NOT NULL PRIMARY KEY, manufacturer_name VARCHAR(30) NOT NULL)';
   return dbUtils.query(query, []);
@@ -24,8 +25,6 @@ dbUtils.query(query, [])
 .then(function(result) {
   console.log("\x1b[32m",'Success: All table created.',"\x1b[37m");
 })
-.catch(function() {
-  console.log('Error Occurs');
+.catch(function(err) {
+  console.log('Error Occured');
 });
-
-
