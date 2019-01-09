@@ -24,7 +24,7 @@ user.signup = function(req, res) {
     };
 
     const query = "Insert into users (email, password) values (?, ?)";
-    let values = [email, hashedPassword, email];
+    let values = [email, hashedPassword];
     dbUtils.query(query, values)
     .then(function(results){
       const token = auth.createToken(user);

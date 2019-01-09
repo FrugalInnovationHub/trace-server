@@ -14,7 +14,7 @@ const bodyParser = require('body-parser');
 
 const auth = require('./helpers/auth');
 const routeHandler = require('./routeHandler');
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.use(cors());
 
