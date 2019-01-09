@@ -3,9 +3,8 @@
  */
 const mysql = require('mysql');
 const dbConfig = require('./dbConfig');
-
 const dbUtils = {};
-
+console.log(dbConfig);
 dbUtils.query = function (currentQuery, args) {
   return new Promise(function(resolve, reject) {
     const connection = mysql.createConnection(dbConfig);
