@@ -27,14 +27,15 @@ app.use(bodyParser.json());
 
 
 // User Endpoints
-app.get('/api/login/', routeHandler.user.login);
-app.get('/api/protected', auth.isToken , routeHandler.product.test);
+app.post('/api/signup/', routeHandler.user.signup);
+app.post('/api/login/', routeHandler.user.login);
+app.post('/api/protected', auth.isToken , routeHandler.product.test);
 
 // Product Endpoints
-app.get('/api/product/', routeHandler.product.get);
-app.post('/api/product/', routeHandler.product.post);
-app.put('/api/product/', routeHandler.product.put);
-app.delete('/api/product/', routeHandler.product.delete);
+app.get('/api/product/', auth.isToken , routeHandler.product.get);
+app.post('/api/product/', auth.isToken , routeHandler.product.post);
+app.put('/api/product/', auth.isToken , routeHandler.product.put);
+app.delete('/api/product/', auth.isToken , routeHandler.product.delete);
 
 
 // Start the server, and have it listen on port 3000

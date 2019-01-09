@@ -8,11 +8,10 @@ const auth = {};
 
 // 256 Random character secret
 const secret = process.env.JWT_SECRET;
-console.log('Secret loaded', secret);
 
 // Create function that create a jwt token
 auth.createToken = function(user) {
-  return jwt.sign({ username: user.username, role: 'admin'}, secret, { expiresIn: '4h' });
+  return jwt.sign({ username: user.email, role: 'admin'}, secret, { expiresIn: '4h' });
 };
 
 // Create function to check if token is present in request or not

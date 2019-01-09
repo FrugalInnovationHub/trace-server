@@ -7,6 +7,7 @@ const dbUtils = require('../db/dbUtils');
 const helper = require('../helpers/helpers');
 const auth = require('../helpers/auth');
 
+
 // Container for Product methods
 const product = {};
 

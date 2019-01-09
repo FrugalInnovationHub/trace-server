@@ -9,7 +9,7 @@ const routeHandler = {};
 routeHandler.user = {};
 
 // User route-handlers
-routeHandler.user.singup = user.signup;
+routeHandler.user.signup = user.signup;
 routeHandler.user.login = user.login;
 
 // Container for product submethods
