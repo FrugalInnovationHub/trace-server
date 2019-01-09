@@ -28,7 +28,6 @@ app.get('/api/ping/',function(req,res) {
   res.type('application/json').status(200).send({Success : 'Your application is working great'});
 });
 
-
 // User Endpoints
 app.post('/api/signup/', routeHandler.user.signup);
 app.post('/api/login/', routeHandler.user.login);

@@ -31,7 +31,8 @@ user.signup = function(req, res) {
       res.type('application/json').status(200).send({token : token});
     })
     .catch(function(err) {
-      res.type('application/json').status(500).send({'Error' : 'Internal Server Error in user'});
+      console.log(err);
+      res.type('application/json').status(500).send({'Error' : err});
     });
   } else {
     res.type('application/json').status(422).send({'Error' : 'Missing required fields'});
