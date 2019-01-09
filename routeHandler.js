@@ -1,12 +1,16 @@
 // Dependencies
-
+const user = require('./components/user');
 const product = require('./components/product');
 
 // Container for routeHandler
 const routeHandler = {};
 
-// Container for login submethods
-routeHandler.login = login;
+// Container for user submethods
+routeHandler.user = {};
+
+// User route-handlers
+routeHandler.user.singup = user.signup;
+routeHandler.user.login = user.login;
 
 // Container for product submethods
 routeHandler.product = {};
@@ -17,6 +21,7 @@ routeHandler.product.post  = product.post;
 routeHandler.product.put  = product.put;
 routeHandler.product.delete  = product.delete;
 
+routeHandler.product.test = product.test;
 
 // Export the module
 module.exports = routeHandler;

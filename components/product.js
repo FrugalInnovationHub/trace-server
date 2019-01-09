@@ -5,10 +5,12 @@
 // Dependencies
 const dbUtils = require('../db/dbUtils');
 const helper = require('../helpers/helpers');
+const auth = require('../helpers/auth');
 
 // Container for Product methods
 const product = {};
 
+// Product get methods
 product.get = function(req, res) {
   // Product Add Table
   let query = "Select * from product_add_table";
@@ -88,12 +90,23 @@ product.post = function(req, res) {
   }
 };
 
+// Product put methods
 product.put = function(req, res) {
   res.type('application/json').status(405).send({});
 };
 
+// Product delete methods
 product.delete = function(req, res) {
   res.type('application/json').status(405).send({});
+};
+
+// Product delete methods
+product.test = function(req, res)  {
+  auth.verifyToken(req, res, function(data){
+    // You can query the database or do what ever you want to do once you have this data
+    console.log('req body', data, '\n req token', req.token);
+    res.type('application/json').status(200).send({'Success' : data});
+  });
 };
 
 // Export the module

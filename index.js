@@ -1,16 +1,18 @@
 /*
  * Primary file for API
  */
+require('dotenv').config(); // Sets up dotenv as soon as our application starts
 
 "use strict";
 // Dependencies
 const express = require('express');
 const app = express();
 // require('./db/createDB.js');
-var cors = require('cors');
+const cors = require('cors');
 const url = require('url');
 const bodyParser = require('body-parser');
 
+const auth = require('./helpers/auth');
 const routeHandler = require('./routeHandler');
 const port = 3001;
 
@@ -22,7 +24,12 @@ app.use(bodyParser.json());
 
 
 // REST Endpoints
-app.get('/api/login/', routeHandler.login);
+
+
+// User Endpoints
+app.get('/api/login/', routeHandler.user.login);
+app.get('/api/protected', auth.isToken , routeHandler.product.test);
+
 // Product Endpoints
 app.get('/api/product/', routeHandler.product.get);
 app.post('/api/product/', routeHandler.product.post);
