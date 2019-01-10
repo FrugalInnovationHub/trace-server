@@ -22,7 +22,5 @@ routeHandler.product.post  = product.post;
 routeHandler.product.put  = product.put;
 routeHandler.product.delete  = product.delete;
 
-routeHandler.product.test = product.test;
-
 // Export the module
 module.exports = routeHandler;
