@@ -22,7 +22,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
 // REST Endpoints
 app.get('/api/ping/',function(req,res) {
   res.type('application/json').status(200).send({Success : 'Your application is working great'});
@@ -31,14 +30,13 @@ app.get('/api/ping/',function(req,res) {
 // User Endpoints
 app.post('/api/signup/', routeHandler.user.signup);
 app.post('/api/login/', routeHandler.user.login);
-app.post('/api/protected', auth.isToken , routeHandler.product.test);
+app.post('/api/protected/', auth.isToken , routeHandler.product.test);
 
 // Product Endpoints
 app.get('/api/product/', auth.isToken , routeHandler.product.get);
 app.post('/api/product/', auth.isToken , routeHandler.product.post);
 app.put('/api/product/', auth.isToken , routeHandler.product.put);
 app.delete('/api/product/', auth.isToken , routeHandler.product.delete);
-
 
 // Start the server, and have it listen on port 3000
 app.listen(port, () => console.log(`App listening on port ${port}!`));

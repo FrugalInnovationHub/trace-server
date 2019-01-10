@@ -6,7 +6,6 @@ const bcrypt = require('bcryptjs');
 const auth = require('../helpers/auth');
 const dbUtils = require('../db/dbUtils');
 
-
 // Container for User methods
 const user = {};
 
