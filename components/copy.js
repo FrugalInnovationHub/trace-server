@@ -136,6 +136,8 @@ product.put = function(req, res) {
 
 // Product delete methods
 product.delete = function(req, res) {
+  console.log('req body',req);
+  console.log('delete was called');
   res.type('application/json').status(405).send({});
 };
 
