@@ -33,10 +33,11 @@ app.post('/api/login/', routeHandler.user.login);
 app.post('/api/protected/', auth.isToken , routeHandler.product.test);
 
 // Product Endpoints
-app.get('/api/product/', auth.isToken , routeHandler.product.get);
-app.post('/api/product/', auth.isToken , routeHandler.product.post);
-app.put('/api/product/', auth.isToken , routeHandler.product.put);
-app.delete('/api/product/', auth.isToken , routeHandler.product.delete);
+app.get('/api/product/parent/', auth.isToken , routeHandler.product.getParent);
+// app.get('/api/product/', auth.isToken , routeHandler.product.get);
+// app.post('/api/product/', auth.isToken , routeHandler.product.post);
+// app.put('/api/product/', auth.isToken , routeHandler.product.put);
+// app.delete('/api/product/', auth.isToken , routeHandler.product.delete);
 
 // Start the server, and have it listen on port 3000
 app.listen(port, () => console.log(`App listening on port ${port}!`));

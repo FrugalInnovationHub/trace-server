@@ -15,7 +15,7 @@ let myData = [];
 let csvStream = csv
   .parse()
   .on("data", function (data) {
-      myData.push(data);
+    myData.push(data);
   })
   .on("end", function () {
   myData.shift();

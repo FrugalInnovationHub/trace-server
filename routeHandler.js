@@ -16,6 +16,7 @@ routeHandler.user.login = user.login;
 routeHandler.product = {};
 
 // Product route-handlers
+routeHandler.product.getParent  = product.getParent;
 routeHandler.product.get  = product.get;
 routeHandler.product.post  = product.post;
 routeHandler.product.put  = product.put;
