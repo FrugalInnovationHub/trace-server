@@ -133,8 +133,6 @@ product.put = function(req, res) {
       res.type('application/json').status(400).send({'Error' : 'Missing required update'});
     }
   });
-
-  res.type('application/json').status(405).send({});
 };
 
 // Product delete methods
