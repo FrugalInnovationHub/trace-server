@@ -96,7 +96,7 @@ product.get = function(req, res) {
       query = "Select * from product_details_table";
       return dbUtils.query(query);
     })
-    .then(function(productDetailsTable){
+    .then(function(productDetailsTable) {
       const data = helper.productOutputData(productAddTable, manufacturerTable, productDetailsTable);
       res.type('application/json').status(200).send(data);
     })
@@ -109,6 +109,31 @@ product.get = function(req, res) {
 
 // Product put methods
 product.put = function(req, res) {
+  auth.verifyToken(req, res, function(data) {
+    let {id, productNumber, value, manufacturerName, manufacturer_id } = req.body;
+
+    // Check if all required fields are present
+    id = typeof id === 'undefined' ? false : id;
+    productNumber = typeof productNumber === 'undefined' ? false : productNumber;
+    value = typeof value === 'undefined' ? false : value;
+    manufacturerName = typeof manufacturerName === 'undefined' ? false : manufacturerName;
+    manufacturer_id = typeof manufacturer_id === 'undefined' ? false : manufacturer_id;
+
+    //   value, manufacturerName, manufacturer_id
+    if(id || productNumber || value || manufacturerName || manufacturer_id) {
+      let query = `Update product_add_table SET value = '${value}' WHERE product_id = '${productNumber}'`;
+      dbUtils.query(query, [])
+      .then(function(results) {
+        res.type('application/json').status(200).send({});
+      })
+      .catch(function(err) {
+        res.type('application/json').status(405).send({'Error' : 'Updating values'});
+      });
+    } else {
+      res.type('application/json').status(400).send({'Error' : 'Missing required update'});
+    }
+  });
+
   res.type('application/json').status(405).send({});
 };
 
