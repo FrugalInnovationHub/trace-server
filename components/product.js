@@ -6,6 +6,7 @@
 const dbUtils = require('../db/dbUtils');
 const helper = require('../helpers/helpers');
 const auth = require('../helpers/auth');
+const url = require('url');
 
 
 // Container for Product methods
@@ -103,42 +104,8 @@ product.get = function(req, res) {
       console.log('Error Occured: ', err);
       res.type('application/json').status(405).send({});
     });
-
   });
 };
-
-// // Product get methods
-// product.get = function(req, res) {
-//   // Product Add Table
-//   let query = "Select * from product_add_table";
-//   let productAddTable = [];
-
-//   // Manufacturer table
-//   let manufacturerTable = [];
-
-//   // Common table between product details table
-//   let productDetailsTable = [];
-
-//   dbUtils.query(query)
-//   .then(function(results) {
-//     productAddTable = results;
-//     query = "Select * from manufacturer_table";
-//     return dbUtils.query(query);
-//   })
-//   .then(function(results) {
-//     manufacturerTable = results;
-//     query = "Select * from product_details_table";
-//     return dbUtils.query(query);
-//   })
-//   .then(function(productDetailsTable){
-//     const data = helper.productOutputData(productAddTable, manufacturerTable, productDetailsTable);
-//     res.type('application/json').status(200).send(data);
-//   })
-//   .catch(function(err) {
-//     console.log('Error Occured: ', err);
-//     res.type('application/json').status(405).send({});
-//   });
-// };
 
 // Product put methods
 product.put = function(req, res) {
@@ -147,7 +114,34 @@ product.put = function(req, res) {
 
 // Product delete methods
 product.delete = function(req, res) {
-  res.type('application/json').status(405).send({});
+
+  // Get the url and parse it
+  const parsedUrl = url.parse(req.url, true);
+
+  // Get the query string as an object
+  const queryStringObject = parsedUrl.query;
+
+  auth.verifyToken(req, res, function(data) {
+    let { id } = queryStringObject;
+    // Check if all required fields are present
+    id = typeof id === 'undefined' ? false : id;
+
+    if (id) {
+      // Product Add Table
+      let query = "Delete from product_details_table where product_details_id = ?";
+      let values = [id];
+
+      dbUtils.query(query, values)
+      .then(function(results) {
+        res.type('application/json').status(200).send({});
+      })
+      .catch(function(err) {
+        res.type('application/json').status(500).send({'Error': 'Could not delete the specified id'});
+      });
+    } else {
+      res.type('application/json').status(405).send({'Error' : 'Missing required fields'});
+    }
+  });
 };
 
 

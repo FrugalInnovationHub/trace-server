@@ -30,7 +30,6 @@ app.get('/api/ping/',function(req,res) {
 // User Endpoints
 app.post('/api/signup/', routeHandler.user.signup);
 app.post('/api/login/', routeHandler.user.login);
-
 // Product Endpoints
 app.get('/api/product/parent/', auth.isToken , routeHandler.product.getParent);
 app.get('/api/product/', auth.isToken , routeHandler.product.get);
