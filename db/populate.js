@@ -10,7 +10,7 @@ const dbUtils = require('./dbUtils');
 const fs = require('fs');
 const csv = require('fast-csv');
 
-let stream = fs.createReadStream('/Users/ankitkumar/Desktop/P.csv');
+let stream = fs.createReadStream('../../data.csv');
 let myData = [];
 let csvStream = csv
   .parse()

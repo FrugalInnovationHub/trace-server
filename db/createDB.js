@@ -19,6 +19,10 @@ dbUtils.query(query,[])
   return dbUtils.query(query, []);
 })
 .then(function(result) {
+  query = 'ALTER TABLE product_details_table ADD COLUMN image longblob';
+  return dbUtils.query(query, []);
+})
+.then(function(result) {
   query = 'CREATE TABLE IF NOT EXISTS users(user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, email VARCHAR(80) NOT NULL, password VARCHAR(100) NOT NULL)';
   return dbUtils.query(query, []);
 })
