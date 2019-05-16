@@ -20,7 +20,7 @@ app.use(cors());
 
 // Parse incoming request bodies
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit : '50mb' }));
 
 // REST Endpoints
 app.get('/api/ping/',function(req,res) {

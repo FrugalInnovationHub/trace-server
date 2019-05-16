@@ -33,7 +33,7 @@ product.getParent = function(req, res) {
 // Product POST request
 product.post = function(req, res) {
   auth.verifyToken(req, res, function(data) {
-    let { productNumber, category, manufacturer } = req.body;
+    let { productNumber, category, manufacturer, imageData } = req.body;
 
     // Check if all required fields are present
     productNumber = typeof productNumber === 'undefined' ? false : productNumber;
@@ -51,10 +51,10 @@ product.post = function(req, res) {
       Promise.all(manufacturersPromise)
       .then(function(results) {
           // Insert values in product_details_table
-          query = "Insert into product_details_table (product_id, manufacturer_id) values (?,?)";
+          query = "Insert into product_details_table (product_id, manufacturer_id, image) values (?,?,?)";
           var manufacturersPromise = manufacturers.map((manufacturer) => {
             let { manufacturerId } = manufacturer;
-            values = [productNumber, manufacturerId];
+            values = [productNumber, manufacturerId, imageData];
             return dbUtils.query(query, values);
           });
 
