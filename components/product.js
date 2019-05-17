@@ -110,7 +110,7 @@ product.get = function(req, res) {
 // Product put methods
 product.put = function(req, res) {
   auth.verifyToken(req, res, function(data) {
-    let {id, productNumber, value, manufacturerName, manufacturer_id } = req.body;
+    let {id, productNumber, value, manufacturerName, manufacturer_id, imageData } = req.body;
 
     // Check if all required fields are present
     id = typeof id === 'undefined' ? false : id;
@@ -124,7 +124,14 @@ product.put = function(req, res) {
       let query = `Update product_add_table SET value = '${value}' WHERE product_id = '${productNumber}'`;
       dbUtils.query(query, [])
       .then(function(results) {
-        res.type('application/json').status(200).send({});
+        let newQuery = `UPDATE product_details_table SET image = '${imageData}' WHERE product_id = '${productNumber}'`;
+        dbUtils.query(newQuery, [])
+        .then(function(results) {
+          res.type('application/json').status(200).send({});
+        })
+        .catch(function(err) {
+          res.type('application/json').status(405).send({'Error' : 'Updating values'});
+        })
       })
       .catch(function(err) {
         res.type('application/json').status(405).send({'Error' : 'Updating values'});
