@@ -16,6 +16,14 @@ const auth = require('./helpers/auth');
 const routeHandler = require('./routeHandler');
 const port = process.env.PORT || 3001;
 
+const https = require('https');
+const fs = require('fs');
+
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/tarangdave.club/privkey.pem', 'utf8'),
+ cert: fs.readFileSync('/etc/letsencrypt/live/tarangdave.club/fullchain.pem', 'utf8')
+};
+
 app.use(cors());
 
 // Parse incoming request bodies
@@ -38,5 +46,6 @@ app.put('/api/product/',auth.isToken, routeHandler.product.put);
 app.delete('/api/product/', auth.isToken , routeHandler.product.delete);
 
 // Start the server, and have it listen on port 3000
-app.listen(port, () => console.log(`App listening on port ${port}!`));
+// app.listen(port, () => console.log(`App listening on port ${port}!`));
+https.createServer(options, app).listen(port);
 
